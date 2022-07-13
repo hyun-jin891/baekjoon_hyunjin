@@ -17,64 +17,47 @@ for i in range(len(base_l) - 2, -1, -1):
             continue
         if rowBase == 'g' and columnBase == 't':
             maxValue = dp[i][j-1]
-            for k in range(i + 1, j):
-                if base_l[k] == 'c':
-                    for l in range(k + 1, j):
-                        if base_l[l] == 'a':
-                            if maxValue < dp[i][k] + dp[l][j]:
-                                maxValue = dp[i][k] + dp[l][j]
-                                break
+            for k in range(j, i - 1, -1):
+                if base_l[k] == 'a':
+                    if maxValue < dp[k][j] + dp[i][k-1]:
+                        maxValue = dp[k][j] + dp[i][k-1]
+                        break
+            
             dp[i][j] = max(maxValue, dp[i+1][j])
             continue
         
         if rowBase == 'a' and columnBase == 'c':
             maxValue = dp[i][j-1]
-            for k in range(i + 1, j):
-                if base_l[k] == 't':
-                    for l in range(k + 1, j):
-                        if base_l[l] == 'g':
-                            if maxValue < dp[i][k] + dp[l][j]:
-                                maxValue = dp[i][k] + dp[l][j]
-                                break
+            for k in range(j, i - 1, -1):
+                if base_l[k] == 'g':
+                    if maxValue < dp[k][j] + dp[i][k-1]:
+                        maxValue = dp[k][j] + dp[i][k-1]
+                        break
+            
             dp[i][j] = max(maxValue, dp[i+1][j])
             continue 
         
         if rowBase == 'a' and columnBase == 't':
-            maxValue1 = dp[i][j-1]
-            maxValue2 = dp[i][j-1]
-            for k in range(i + 1, j):
-                if base_l[k] == 't':
-                    for l in range(k + 1, j):
-                        if base_l[l] == 'a':
-                            if maxValue1 < dp[i][k] + dp[l][j]:
-                                maxValue1 = dp[i][k] + dp[l][j]
-                                break
+            maxValue = dp[i][j-1]
                             
             for k in range(j, i - 1, -1):
                 if base_l[k] == 'a':
-                    if maxValue2 < dp[k][j] + dp[i][k-1]:
-                        maxValue2 = dp[k][j] + dp[i][k-1]
+                    if maxValue < dp[k][j] + dp[i][k-1]:
+                        maxValue = dp[k][j] + dp[i][k-1]
                         break
                     
-            dp[i][j] = max(dp[i + 1][j - 1] + 2, maxValue1, maxValue2, dp[i+1][j])
+            dp[i][j] = max(dp[i + 1][j - 1] + 2, maxValue, dp[i+1][j])
             continue
         
         if rowBase == 'g' and columnBase == 'c':
-            maxValue1 = dp[i][j-1]
-            maxValue2 = dp[i][j-1]
-            for k in range(i + 1, j):
-                if base_l[k] == 'c':
-                    for l in range(k + 1, j):
-                        if base_l[l] == 'g':
-                            if maxValue1 < dp[i][k] + dp[l][j]:
-                                maxValue1 = dp[i][k] + dp[l][j]
-                                break
+            maxValue = dp[i][j-1]
+            
             for k in range(j, i - 1, -1):
                 if base_l[k] == 'g':
-                    if maxValue2 < dp[k][j] + dp[i][k-1]:
-                        maxValue2 = dp[k][j] + dp[i][k-1]
+                    if maxValue < dp[k][j] + dp[i][k-1]:
+                        maxValue = dp[k][j] + dp[i][k-1]
                         break
-            dp[i][j] = max(dp[i + 1][j - 1] + 2, maxValue1, maxValue2, dp[i+1][j])
+            dp[i][j] = max(dp[i + 1][j - 1] + 2, maxValue, dp[i+1][j])
             continue
         
         else:
@@ -84,4 +67,4 @@ for i in range(len(base_l) - 2, -1, -1):
 if len(base_l) == 0:
     print(0)
 else:
-    print(dp[0][len(base_l)-1]) 
+    print(dp[0][len(base_l)-1])
