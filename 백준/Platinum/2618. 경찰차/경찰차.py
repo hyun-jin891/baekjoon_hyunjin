@@ -34,7 +34,7 @@ for i in range(len(police1Coordinate)):
                     minIndex = k
             dp[j][i] = minDistance
             tracking[j][i] = minIndex
-            # tracking[j][i] = tracking[j][minIndex] + "1"
+
         
         elif j - i == 1:
             minDistance = dp[0][i] + abs(police2Coordinate[j][0] - police2Coordinate[0][0]) + abs(police2Coordinate[j][1] - police2Coordinate[0][1])
@@ -46,17 +46,17 @@ for i in range(len(police1Coordinate)):
                     minIndex = k
             dp[j][i] = minDistance
             tracking[j][i] = minIndex
-            # tracking[j][i] = tracking[minIndex][i] + "2"
+
         
         elif i > j:
             dp[j][i] = dp[j][i - 1] + abs(police1Coordinate[i][0] - police1Coordinate[i - 1][0]) + abs(police1Coordinate[i][1] - police1Coordinate[i - 1][1])
             tracking[j][i] = i - 1
-            #tracking[j][i] = tracking[j][i - 1] + "1"
+
         
         elif i < j:
             dp[j][i] = dp[j - 1][i] + abs(police2Coordinate[j][0] - police2Coordinate[j - 1][0]) + abs(police2Coordinate[j][1] - police2Coordinate[j - 1][1])
             tracking[j][i] = j - 1
-            #tracking[j][i] = tracking[j - 1][i] + "2"
+
 
 d = dp[0][-1]
 minimumI = 0
@@ -98,6 +98,4 @@ else:
            Y = tracking[X][Y]
  
 for i in range(len(t)):
-    print(t[len(t) - 1 - i])   
-
-print(dp)
+    print(t[len(t) - 1 - i]) 
