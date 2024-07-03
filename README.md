@@ -1,2 +1,2 @@
 # 백준 문제 풀이
-* Rank: silver 1
+* Rank: Gold 5
