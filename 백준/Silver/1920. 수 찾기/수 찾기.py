@@ -1,16 +1,17 @@
-def binary_search(a, x):
+def binary_search(arr, x):
     left = 0
-    right = len(a)
+    right = len(arr) - 1
     
     while left < right:
         mid = (left + right) // 2
-        if a[mid] > x:
+        if arr[mid] > x:
             left = mid + 1
-        elif a[mid] < x:
-            right = mid
+        elif arr[mid] < x:
+            right = mid - 1
         else:
             return 1
-    
+    if left == right and arr[left] == x:
+        return 1
     return 0
 
 N = int(input())
